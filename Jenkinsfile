@@ -1,9 +1,23 @@
 pipeline {
-  agent any
+  agent {
+    dockerfile {
+      filename 'Dockerfile'
+    }
+
+  }
   stages {
-    stage('') {
-      steps {
-        echo 'lo'
+    stage('error') {
+      parallel {
+        stage('error') {
+          steps {
+            echo 'lo'
+          }
+        }
+        stage('test') {
+          steps {
+            sh 'echo "we are here"'
+          }
+        }
       }
     }
   }
