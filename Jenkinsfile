@@ -1,9 +1,23 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'python:latest'
+    }
+
+  }
   stages {
-    stage('') {
-      steps {
-        echo 'lo'
+    stage('error') {
+      parallel {
+        stage('error') {
+          steps {
+            echo 'lo'
+          }
+        }
+        stage('test') {
+          steps {
+            echo '"we landed"'
+          }
+        }
       }
     }
   }
